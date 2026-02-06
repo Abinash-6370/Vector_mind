@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Archaeology | University Notice Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="icon">🏛️</span>
+            <span class="text">DigiArch</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-item active" data-target="view-home">Search</a>
+            <a href="#" class="nav-item" data-target="view-notices">Notices</a>
+            <a href="#" class="nav-item" data-target="view-about">About</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Theme Toggle -->
+            <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+                <span class="icon-sun hidden">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+
+            <!-- Notification Bell -->
+            <div class="notification-wrapper" id="notification-bell">
+                <button type="button" class="btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="badge">3</span>
+                </button>
+                <div class="notification-dropdown hidden">
+                    <div class="notif-header">
+                        <span>Notifications</span>
+                        <button type="button" class="clear-btn">Clear all</button>
+                    </div>
+                    <ul class="notif-list">
+                        <!-- JS Injected -->
+                    </ul>
+                </div>
+            </div>
+            <a href="login.html" class="btn btn-secondary"
+                style="text-decoration: none; display: inline-block;">Login</a>
+        </div>
+    </nav>
+
+    <main id="main-container">
+        <!-- Home View -->
+        <div id="view-home" class="view-section active-view">
+            <!-- Hero Section -->
+            <section class="hero" id="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Unlock the <span class="gradient-text">Hidden Knowledge</span></h1>
+                    <p class="hero-subtitle">Instantly find exam schedules, deadlines, and notices buried in PDFs.</p>
+
+                    <div class="search-wrapper">
+                        <div class="search-bar" id="main-search-bar">
+                            <div class="search-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </div>
+                            <input type="text" placeholder="Ask anything... e.g., 'When is the 3rd sem Java exam?'"
+                                id="search-input">
+                            <div class="search-actions">
+                                <input type="file" id="file-upload" class="hidden" accept=".pdf,.png,.jpg,.jpeg">
+                                <button type="button" class="action-btn" id="upload-btn" title="Upload File">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="12" y1="18" x2="12" y2="12"></line>
+                                        <polyline points="9 15 12 12 15 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button type="button" class="action-btn" id="mic-btn" title="Voice Search"
+                                    aria-label="Start Voice Search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                                    </svg>
+                                </button>
+                                <button type="button" class="submit-btn" id="search-submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="suggestions">
+                        <span class="suggestion-label">Try searching:</span>
+                        <button type="button" class="chip">OBC Scholarship 2026</button>
+                        <button type="button" class="chip">Bus Route 5</button>
+                        <button type="button" class="chip">Hostel Fees</button>
+                    </div>
+                </div>
+
+                <!-- Smart Timeline (Visible on Landing) -->
+                <div class="timeline-container glass-card">
+                    <div class="timeline-header">
+                        <h3>📅 Smart Timeline</h3>
+                        <span class="badge-sm">Upcoming Deadlines</span>
+                    </div>
+                    <div class="timeline-scroll">
+                        <!-- Events Injected by JS -->
+                        <div class="timeline-track"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section (Hidden initially) -->
+            <section class="results-view hidden" id="results-section">
+                <div class="left-panel">
+                    <div class="ai-answer-container">
+                        <div class="section-header">
+                            <span class="icon">✨</span>
+                            <h2>Answer</h2>
+                            <select id="lang-select" class="lang-dropdown" aria-label="Select Language for Voice">
+                                <option value="en-US">English</option>
+                                <option value="hi-IN">Hindi (हिंदी)</option>
+                                <!-- <option value="or-IN">Odia (ଓଡ଼ିଆ)</option> -->
+                            </select>
+                        </div>
+                        <div class="ai-content-box glass-card">
+                            <div class="streaming-text" id="ai-response-text">
+                                <!-- JS will inject text here -->
+                            </div>
+                            <div class="ai-footer">
+                                <div class="actions">
+                                    <button class="sm-btn" id="audio-btn"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07">
+                                            </path>
+                                        </svg> Listen</button>
+                                    <button class="sm-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                            height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
+                                            </path>
+                                        </svg> Helpful</button>
+                                    <button class="sm-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                            height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg> Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sources-container">
+                        <div class="section-header">
+                            <span class="icon">📚</span>
+                            <h2>Sources</h2>
+                        </div>
+                        <div class="sources-grid" id="sources-grid">
+                            <!-- JS will inject source cards -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="section-header">
+                        <span class="icon">🔗</span>
+                        <h2>Related Questions</h2>
+                    </div>
+                    <div class="related-list glass-card" id="related-questions">
+                        <!-- JS will inject related qs -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- About/Features Section -->
+            <section class="features-section" id="features">
+                <div class="section-title">
+                    <h2>Why <span class="gradient-text">DigiArch?</span></h2>
+                    <p>Bringing clarity to campus chaos.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card glass-card">
+                        <div class="f-icon">🔍</div>
+                        <h3>Semantic Search</h3>
+                        <p>Don't just search keywords. Ask questions and get direct answers, just like speaking to a
+                            human.
+                        </p>
+                    </div>
+                    <div class="feature-card glass-card">
+                        <div class="f-icon">👁️</div>
+                        <h3>OCR Intelligence</h3>
+                        <p>We read the unreadable. Scanned PDFs and images are instantly converted to searchable text.
+                        </p>
+                    </div>
+                    <div class="feature-card glass-card">
+                        <div class="f-icon">⏳</div>
+                        <h3>Deadline Tracking</h3>
+                        <p>Never miss a date. Our engine automatically extracts dates and builds a personal timeline for
+                            you.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Notices View -->
+        <div id="view-notices" class="view-section hidden">
+            <div class="view-header">
+                <h1>Campus <span class="gradient-text">Notices</span></h1>
+                <p>Browse all recent circulars by category.</p>
+            </div>
+
+            <div class="filter-bar glass-card">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="exam">Exams</button>
+                <button class="filter-btn" data-filter="scholarship">Scholarships</button>
+                <button class="filter-btn" data-filter="admin">Administration</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+            </div>
+
+            <div class="notices-grid" id="notices-grid">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- About View (Project Story) -->
+        <div id="view-about" class="view-section hidden">
+            <div class="view-header">
+                <h1>The <span class="gradient-text">Project Story</span></h1>
+                <p>From fragmented notices to a Smart Knowledge Graph.</p>
+            </div>
+
+            <div class="about-container">
+
+                <!-- 1. The Journey (Timeline) -->
+                <div class="timeline">
+                    <div class="event left reveal-on-scroll">
+                        <div class="content glass-card">
+                            <h3>⚠️ The Problem</h3>
+                            <p>Information Black Holes: Students miss critical deadlines because notices are trapped in
+                                scanned PDFs and image files.</p>
+                        </div>
+                    </div>
+                    <div class="event right reveal-on-scroll">
+                        <div class="content glass-card">
+                            <h3>💡 The Vision</h3>
+                            <p>Digital Archaeology: A system that "excavates" this buried data, treating every notice as
+                                a historical artifact to be indexed.</p>
+                        </div>
+                    </div>
+                    <div class="event left reveal-on-scroll">
+                        <div class="content glass-card">
+                            <h3>🛠️ The Tech</h3>
+                            <p>We combine <strong>OCR</strong> to read images, <strong>LLMs</strong> to understand
+                                context, and <strong>Vector Search</strong> for instant answers.</p>
+                        </div>
+                    </div>
+                    <div class="event right reveal-on-scroll">
+                        <div class="content glass-card">
+                            <h3>🚀 The Model</h3>
+                            <p>A fully functional engine proving that university data can be as accessible as a Google
+                                search. <strong>Live now.</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. What We Deliver -->
+                <section class="deliverables-section reveal-on-scroll">
+                    <h2>📦 What We Deliver</h2>
+                    <p class="section-subtitle">A complete ecosystem for student success.</p>
+                    <div class="deliverables-grid">
+                        <div class="deliverable-card glass-card" id="card-semantic-search">
+                            <div class="d-icon">🔍</div>
+                            <h3>Semantic Search</h3>
+                            <p>Ask "When is the Java exam?" instead of searching filenames.</p>
+                        </div>
+                        <div class="deliverable-card glass-card">
+                            <div class="d-icon">📅</div>
+                            <h3>Smart Timeline</h3>
+                            <p>Auto-generated personal calendar from notice dates.</p>
+                        </div>
+                        <div class="deliverable-card glass-card">
+                            <div class="d-icon">🔊</div>
+                            <h3>Audio Alerts</h3>
+                            <p>Listen to circulars on the go with Text-to-Speech.</p>
+                        </div>
+                        <div class="deliverable-card glass-card">
+                            <div class="d-icon">🔔</div>
+                            <h3>Live Notifications</h3>
+                            <p>Real-time updates categorized by relevance.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. Future Roadmap -->
+                <section class="roadmap-section reveal-on-scroll">
+                    <h2>🚀 Future Horizons</h2>
+                    <div class="roadmap-container">
+                        <div class="roadmap-step">
+                            <div class="r-circle"></div>
+                            <h4>Mobile App</h4>
+                            <p>Native iOS/Android experience.</p>
+                        </div>
+                        <div class="roadmap-step">
+                            <div class="r-circle"></div>
+                            <h4>Multi-Campus</h4>
+                            <p>Scaling to 50+ universities.</p>
+                        </div>
+                        <div class="roadmap-step">
+                            <div class="r-circle"></div>
+                            <h4>AI Tutors</h4>
+                            <p>Personalized study plans.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="team-footer">
+                    <p>Built with ❤️ for <strong>Digital Archaeology</strong> | Hackathon 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Setup View -->
+        <div id="view-profile-setup" class="view-section hidden">
+            <div class="view-header">
+                <h1>Setup <span class="gradient-text">Profile</span></h1>
+                <p>Tell us about yourself to personalize your experience.</p>
+            </div>
+            <div class="profile-form-container glass-card">
+                <form id="profile-setup-form">
+                    <div class="form-group-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="p-name" placeholder="E.g. Om Maheswari" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Student ID</label>
+                            <input type="text" id="p-id" placeholder="E.g. CS2026001">
+                        </div>
+                    </div>
+
+                    <div class="form-group-grid">
+                        <div class="form-group">
+                            <label>Course</label>
+                            <select id="p-course">
+                                <option value="B.Tech">B.Tech</option>
+                                <option value="MCA">MCA</option>
+                                <option value="MBA">MBA</option>
+                                <option value="B.Sc">B.Sc</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Semester</label>
+                            <select id="p-sem">
+                                <option value="1">1st Sem</option>
+                                <option value="2">2nd Sem</option>
+                                <option value="3">3rd Sem</option>
+                                <option value="4">4th Sem</option>
+                                <option value="5">5th Sem</option>
+                                <option value="6">6th Sem</option>
+                                <option value="7">7th Sem</option>
+                                <option value="8">8th Sem</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Interests (Select all that apply)</label>
+                        <div class="interest-chips">
+                            <div class="chip i-chip" data-val="exams">Exams</div>
+                            <div class="chip i-chip" data-val="scholarship">Scholarships</div>
+                            <div class="chip i-chip" data-val="sports">Sports</div>
+                            <div class="chip i-chip" data-val="events">Tech Events</div>
+                            <div class="chip i-chip" data-val="internship">Internships</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn full-width">Save & Continue</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- User Profile Dashboard -->
+        <div id="view-profile" class="view-section hidden">
+            <div class="view-header">
+                <h1>Student <span class="gradient-text">Dashboard</span></h1>
+                <p>Your academic overview.</p>
+            </div>
+
+            <div class="profile-dashboard">
+                <div class="student-card glass-card">
+                    <div class="student-avatar" id="d-avatar">O</div>
+                    <div class="student-info">
+                        <h2 id="d-name">Student Name</h2>
+                        <p id="d-details">Course • Semester</p>
+                        <span class="badge-sm" id="d-id">ID: 12345</span>
+                    </div>
+                    <button class="edit-btn" id="edit-profile-btn">Edit</button>
+                    <button class="edit-btn" id="logout-btn"
+                        style="background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); margin-top: 1rem;">Sign
+                        Out</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <h3 id="stat-read">0</h3>
+                        <p>Notices Read</p>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <h3 id="stat-deadlines">0</h3>
+                        <p>Deadlines</p>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <h3 id="stat-saved">0</h3>
+                        <p>Saved</p>
+                    </div>
+                </div>
+
+                <div class="preferences-section glass-card">
+                    <h3>Your Interests</h3>
+                    <div class="tech-tags" id="d-interests">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="icon">🏛️</span>
+                    <span>DigiArch</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="copyright">© 2026 Digital Archaeology Hackathon Team</div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
